@@ -1,0 +1,30 @@
+{% extends 'AppPfinalcoder/home.html' %}
+{% block head %}
+    <title>DESSERTS</title>
+{% endblock head %}
+
+
+{% block body %}
+    <h1>Desserts</h1>
+
+    <form action={% url 'Desserts' %} method="GET">
+        <input typ="text" name="order" placeholder=" Customer order"/>
+        <input type ="submit" value="Search"/>
+    </form>
+
+    <ul>
+    {% if dessert %}
+        {% for dessert in desserts %}
+            <li>
+                {{dessert}}
+            </li>
+        {% endfor %}
+    {% elif error%}
+        <h3>{{error}}</h3>
+    {% else %}
+        <h3> Order don't exist</h3>
+    {% endif %}
+    </ul>
+
+    
+{% endblock body %}

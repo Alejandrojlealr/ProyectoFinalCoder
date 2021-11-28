@@ -1,0 +1,17 @@
+{% extends 'AppPfinalcoder/home.html' %}
+
+{% block head %}
+    <title>CREATE CAKES</title>
+{% endblock head %}
+
+
+{% block body %}
+    <h1>Create Cakes</h1>
+
+    <form action={% url 'Create_cakes' %} method="POST">
+        {% csrf_token %}
+        {{form.as_table}}
+        <input type ="submit" value="Create"/>
+    </form>
+    
+{% endblock body %}
