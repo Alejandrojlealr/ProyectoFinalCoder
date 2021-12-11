@@ -5,7 +5,7 @@
 
 
 {% block body %}
-    <h1>Desserts</h1>
+    <h1>Desserts</h1> <a href={% url 'Create_desserts'%}>Create desserts</a>
 
     <form action={% url 'Desserts' %} method="GET">
         <input typ="text" name="order" placeholder=" Customer order"/>

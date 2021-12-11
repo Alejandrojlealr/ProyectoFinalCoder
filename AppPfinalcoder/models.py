@@ -1,7 +1,10 @@
+from datetime import datetime
 from django.db import models
+#from django.utils.timezone import now
 
 # Create your models here.
 class Cakes(models.Model):
+    date=models.DateTimeField(default=datetime.now())
     order=models.IntegerField(default=0)
     fullname=models.CharField(max_length=30)
     address=models.CharField(max_length=50)
@@ -14,6 +17,7 @@ class Cakes(models.Model):
       return f'Customer order {self.order}'
     
 class Dessert(models.Model):
+    date=models.DateTimeField(default=datetime.now())
     order=models.IntegerField(default=0)
     fullname=models.CharField(max_length=30)
     address=models.CharField(max_length=50)
@@ -26,6 +30,7 @@ class Dessert(models.Model):
        return f'Customer order {self.order}'
     
 class Bakery(models.Model):
+    date=models.DateTimeField(default=datetime.now())
     order=models.IntegerField(default=0)
     fullname=models.CharField(max_length=30)
     address=models.CharField(max_length=50)

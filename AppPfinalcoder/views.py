@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 
 from AppPfinalcoder.forms import CakesForm
 from .models import Bakery, Cakes, Dessert
-from .forms import CakesForm
+from .forms import CakesForm, DessertForm, BakeryForms
 
 # Create your views here.
 
@@ -63,6 +63,22 @@ def desserts(request):
             error = 'Enter a number.'
     return render (request, 'AppPfinalcoder/desserts.html', {'desserts': desserts, 'error': error})
 
+
+#view create_desserts
+def create_desserts(request):
+    if request.method == 'POST':
+        form = DessertForm(request.POST)
+        
+        if form.is_valid():
+            dat_a = form.cleaned_data
+            desserts = Dessert(order=dat_a['order'], fullname=dat_a['fullname'], address=dat_a['address'], phone=dat_a['phone'], email=dat_a['email'], product=dat_a['product'], units=dat_a['units'])
+            desserts.save()
+            return redirect('Desserts')
+        
+    
+    form = DessertForm()
+    return render(request, 'AppPfinalcoder/form_desserts.html', {'form': form})
+
 #_______________________________________________________________________________________________________________
 
 #VIEW BAKERY
@@ -80,3 +96,19 @@ def bakery(request):
         except:
             error = 'Enter a number.'
     return render (request, 'AppPfinalcoder/bakery.html', {'bakery': bakery, 'error': error})
+
+
+#view create_bakery
+def create_bakery(request):
+    if request.method == 'POST':
+        form = BakeryForms(request.POST)
+        
+        if form.is_valid():
+            dat_a = form.cleaned_data
+            bakery = Bakery(order=dat_a['order'], fullname=dat_a['fullname'], address=dat_a['address'], phone=dat_a['phone'], email=dat_a['email'], product=dat_a['product'], units=dat_a['units'])
+            bakery.save()
+            return redirect('Bakery')
+        
+    
+    form = BakeryForms()
+    return render(request, 'AppPfinalcoder/form_bakery.html', {'form': form})
