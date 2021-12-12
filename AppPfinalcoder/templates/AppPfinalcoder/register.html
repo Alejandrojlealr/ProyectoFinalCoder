@@ -1,0 +1,26 @@
+{% extends 'AppPfinalcoder/home.html' %}
+
+{% block head %}
+    <title>REGISTER</title>
+{% endblock head %}
+
+{% block body %}
+    {% if error %}
+        <h3>{{message}}</h3>
+    {% endif %}
+    
+    
+    <form action ='' method="POST">
+        {% csrf_token %}
+        <table>
+            {{form}}
+        </table>
+        <input type='submit' value="Register">
+
+    </form>
+
+
+{% endblock body %}
+
+
+</html>

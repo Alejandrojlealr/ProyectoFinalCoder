@@ -6,6 +6,13 @@ from AppPfinalcoder.forms import CakesForm
 from .models import Bakery, Cakes, Dessert
 from .forms import CakesForm, DessertForm, BakeryForms
 
+#login
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, authenticate
+
+from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 
 
@@ -112,3 +119,52 @@ def create_bakery(request):
     
     form = BakeryForms()
     return render(request, 'AppPfinalcoder/form_bakery.html', {'form': form})
+#__________________________________________________________________________________________
+#View login
+def login_request(request):
+    
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        
+        if form.is_valid():
+            username=form.cleaned_data.get('username')
+            password=form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            
+            if user is not None:
+                login(request, user)
+                return render(request, 'AppPfinalcoder/home.html', { 'message_register': True, 'message': f'Welcome to CAKES&BAKES {username}'})
+            else:
+                return render(request, 'AppPfinalcoder/login.html', {'form':form, 'message': 'User or password wrong', 'error': True})
+        
+        else:
+           return render(request, 'AppPfinalcoder/login.html', {'form':form, 'message': 'Format wrong', 'error': True}) 
+    
+    
+    form = AuthenticationForm()
+    
+    return render(request, 'AppPfinalcoder/login.html', {'form':form, 'message': '', 'error': False})
+
+#_______________________________________________________________________________________________________________________________
+#Register customer
+def register_request(request):
+    
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        
+        if form.is_valid():
+            username=form.cleaned_data.get('username')
+            
+            form.save()
+            
+            return render(request, 'AppPfinalcoder/home.html', { 'message_register': True, 'message': f' User {username} created'})
+    
+    form = UserCreationForm()
+    
+    return render(request, 'AppPfinalcoder/register.html', {'form':form, 'message': '', 'error': False})
+
+#________________________________________________________________________________________________________________
+#PRICES
+@login_required
+def prices(request):
+    return render(request, 'AppPfinalcoder/prices.html',{})
