@@ -14,7 +14,7 @@ class Cakes(models.Model):
     units=models.IntegerField()
     
     def __str__(self):
-      return f'Customer order {self.order}'
+      return f'Customer order {self.order} - {self.fullname}'
     
 class Dessert(models.Model):
     date=models.DateTimeField(default=datetime.now())
@@ -27,7 +27,7 @@ class Dessert(models.Model):
     units=models.IntegerField()
     
     def __str__(self):
-       return f'Customer order {self.order}'
+       return f'Customer order {self.order}- {self.fullname} '
     
 class Bakery(models.Model):
     date=models.DateTimeField(default=datetime.now())
@@ -40,7 +40,7 @@ class Bakery(models.Model):
     units=models.IntegerField()
     
     def __str__(self):
-       return f'Customer order {self.order}'
+       return f'Customer order {self.order} - {self.fullname}'
     
     
     
