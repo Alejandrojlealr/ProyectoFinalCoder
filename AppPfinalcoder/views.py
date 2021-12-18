@@ -12,6 +12,8 @@ from django.contrib.auth import login, authenticate
 
 from django.contrib.auth.decorators import login_required
 
+from django.views.generic import DetailView
+
 
 # Create your views here.
 
@@ -40,11 +42,11 @@ def cakes(request):
 
 def create_cake(request):
     if request.method == 'POST':
-        form = CakesForm(request.POST)
+        form = CakesForm(request.POST, request.FILES)
         
         if form.is_valid():
             dat_a = form.cleaned_data
-            cakes = Cakes(order=dat_a['order'], fullname=dat_a['fullname'], address=dat_a['address'], phone=dat_a['phone'], email=dat_a['email'], product=dat_a['product'], units=dat_a['units'])
+            cakes = Cakes(order=dat_a['order'], fullname=dat_a['fullname'], address=dat_a['address'], phone=dat_a['phone'], email=dat_a['email'], product=dat_a['product'], units=dat_a['units'], imagen = dat_a['imagen'])
             cakes.save()
             return redirect('Cakes')
         
@@ -74,11 +76,11 @@ def desserts(request):
 #view create_desserts
 def create_desserts(request):
     if request.method == 'POST':
-        form = DessertForm(request.POST)
+        form = DessertForm(request.POST, request.FILES)
         
         if form.is_valid():
             dat_a = form.cleaned_data
-            desserts = Dessert(order=dat_a['order'], fullname=dat_a['fullname'], address=dat_a['address'], phone=dat_a['phone'], email=dat_a['email'], product=dat_a['product'], units=dat_a['units'])
+            desserts = Dessert(order=dat_a['order'], fullname=dat_a['fullname'], address=dat_a['address'], phone=dat_a['phone'], email=dat_a['email'], product=dat_a['product'], units=dat_a['units'], imagen = dat_a['imagen'])
             desserts.save()
             return redirect('Desserts')
         
@@ -108,11 +110,11 @@ def bakery(request):
 #view create_bakery
 def create_bakery(request):
     if request.method == 'POST':
-        form = BakeryForms(request.POST)
+        form = BakeryForms(request.POST, request.FILES)
         
         if form.is_valid():
             dat_a = form.cleaned_data
-            bakery = Bakery(order=dat_a['order'], fullname=dat_a['fullname'], address=dat_a['address'], phone=dat_a['phone'], email=dat_a['email'], product=dat_a['product'], units=dat_a['units'])
+            bakery = Bakery(order=dat_a['order'], fullname=dat_a['fullname'], address=dat_a['address'], phone=dat_a['phone'], email=dat_a['email'], product=dat_a['product'], units=dat_a['units'], imagen = dat_a['imagen'])
             bakery.save()
             return redirect('Bakery')
         
@@ -168,3 +170,18 @@ def register_request(request):
 @login_required
 def prices(request):
     return render(request, 'AppPfinalcoder/prices.html',{})
+
+#_________________________________________________________________________________________________________________
+#Imagen
+
+class CakesDetailView(DetailView):
+    model = Cakes
+    template_name = "AppPfinalcoder/detailcake.html"
+    
+class DessertsDetailView(DetailView):
+    model = Dessert
+    template_name = "AppPfinalcoder/detaildessert.html"
+    
+class BakeryDetailView(DetailView):
+    model = Bakery
+    template_name = "AppPfinalcoder/detailbakery.html"

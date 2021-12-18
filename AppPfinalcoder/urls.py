@@ -1,6 +1,6 @@
 from django.urls.conf import path
 #import views
-from .views import home, cakes, desserts, bakery, create_cake, create_desserts, create_bakery, login_request, prices, register_request
+from .views import BakeryDetailView, DessertsDetailView, CakesDetailView, home, cakes, desserts, bakery, create_cake, create_desserts, create_bakery, login_request, prices, register_request
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -16,6 +16,9 @@ urlpatterns = [
     path('register/', register_request, name='Register'),
     path('logout', LogoutView.as_view(template_name='AppPfinalcoder/logout.html'), name='Logout'),
     path('prices', prices, name='Prices'),
+    path('cakes/<int:pk>/', CakesDetailView.as_view(),name='detailcake'),
+    path('bakery/<int:pk>/', BakeryDetailView.as_view(),name='detailbakery'),
+    path('desserts/<int:pk>/', DessertsDetailView.as_view(),name='detaildessert')
 ]
 
 

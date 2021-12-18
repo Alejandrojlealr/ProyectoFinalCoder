@@ -12,6 +12,7 @@ class Cakes(models.Model):
     email=models.EmailField()
     product=models.CharField(max_length=30)
     units=models.IntegerField()
+    imagen=models.ImageField(upload_to='cakes',null=True, blank=True)
     
     def __str__(self):
       return f'Customer order {self.order} - {self.fullname}'
@@ -25,6 +26,7 @@ class Dessert(models.Model):
     email=models.EmailField()
     product=models.CharField(max_length=30)
     units=models.IntegerField()
+    imagen=models.ImageField(upload_to='desserts',null=True, blank=True)
     
     def __str__(self):
        return f'Customer order {self.order}- {self.fullname} '
@@ -38,6 +40,7 @@ class Bakery(models.Model):
     email=models.EmailField()
     product=models.CharField(max_length=30)
     units=models.IntegerField()
+    imagen=models.ImageField(upload_to='bakery',null=True, blank=True)
     
     def __str__(self):
        return f'Customer order {self.order} - {self.fullname}'

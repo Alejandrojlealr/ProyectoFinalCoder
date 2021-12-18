@@ -16,7 +16,7 @@
     {% if bakery %}
         {% for bakery in bakery %}
             <li>
-                {{bakery}}
+                <a href={% url 'detailbakery' bakery.id %}>{{bakery}}</a>
             </li>
         {% endfor %}
     {% elif error%}

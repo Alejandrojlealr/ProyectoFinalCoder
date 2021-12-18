@@ -11,6 +11,7 @@ class CakesForm(forms.Form):
     email=forms.EmailField()
     product=forms.CharField(max_length=30)
     units=forms.IntegerField()
+    imagen = forms.ImageField()
     
 class DessertForm(forms.Form):
     date=forms.DateTimeField()
@@ -21,6 +22,7 @@ class DessertForm(forms.Form):
     email=forms.EmailField()
     product=forms.CharField(max_length=30)
     units=forms.IntegerField()
+    imagen = forms.ImageField()
     
 class BakeryForms(forms.Form):
     date=forms.DateTimeField()
@@ -31,4 +33,5 @@ class BakeryForms(forms.Form):
     email=forms.EmailField()
     product=forms.CharField(max_length=30)
     units=forms.IntegerField()
+    imagen = forms.ImageField()
     

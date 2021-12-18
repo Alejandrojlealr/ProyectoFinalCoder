@@ -8,3 +8,5 @@ admin.site.register(Cakes)
 admin.site.register(Dessert)
 admin.site.register(Bakery)
 
+#admin.site.register(Cake)
+

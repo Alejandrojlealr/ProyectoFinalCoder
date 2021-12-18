@@ -13,10 +13,10 @@
     </form>
 
     <ul>
-    {% if dessert %}
+    {% if desserts %}
         {% for dessert in desserts %}
             <li>
-                {{dessert}}
+                <a href={% url 'detaildessert' dessert.id %}>{{dessert}}</a>
             </li>
         {% endfor %}
     {% elif error%}
