@@ -6,7 +6,7 @@
 
 
 {% block body %}
-    <h1>Cakes</h1> <a href= {% url 'Create_cakes' %}>Create cake</a>
+    <h1>Cakes</h1> <a href= {% url 'Create_cakes' %}>Create customer cake</a>
 
     <form action={% url 'Cakes' %} method="GET">
         <input typ="text" name="order" placeholder=" Customer order"/>
