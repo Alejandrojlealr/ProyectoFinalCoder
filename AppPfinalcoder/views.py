@@ -40,7 +40,7 @@ def cakes(request):
 
 #view create_cake
 
-def create_cake(request, id):
+def create_cake(request, id=0):
     id_cakes = 0
     try:
         cakes = Cakes.objects.get(id=id)
@@ -92,7 +92,7 @@ def desserts(request):
 
 
 #view create_desserts
-def create_desserts(request, id):
+def create_desserts(request, id=0):
     id_desserts = 0
     try:
         desserts = Dessert.objects.get(id=id)
@@ -141,7 +141,7 @@ def bakery(request):
 
 
 #view create_bakery
-def create_bakery(request, id):
+def create_bakery(request, id=0):
     id_bakery = 0
     try:
         bakery =Bakery.objects.get(id=id)

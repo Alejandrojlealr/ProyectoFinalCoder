@@ -15,7 +15,7 @@ class Cakes(models.Model):
     imagen=models.ImageField(upload_to='cakes',null=True, blank=True)
     
     def __str__(self):
-      return f'Customer order {self.order} - {self.fullname}'
+      return f'Customer order {self.order} - {self.fullname} - {self.product}'
     
 class Dessert(models.Model):
     date=models.DateTimeField(default=datetime.now())
@@ -29,7 +29,7 @@ class Dessert(models.Model):
     imagen=models.ImageField(upload_to='desserts',null=True, blank=True)
     
     def __str__(self):
-       return f'Customer order {self.order}- {self.fullname} '
+       return f'Customer order {self.order}- {self.fullname} - {self.product}'
     
 class Bakery(models.Model):
     date=models.DateTimeField(default=datetime.now())
@@ -43,7 +43,7 @@ class Bakery(models.Model):
     imagen=models.ImageField(upload_to='bakery',null=True, blank=True)
     
     def __str__(self):
-       return f'Customer order {self.order} - {self.fullname}'
+       return f'Customer order {self.order} - {self.fullname}- {self.product}'
     
     
     
