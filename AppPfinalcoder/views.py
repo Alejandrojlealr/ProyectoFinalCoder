@@ -40,7 +40,14 @@ def cakes(request):
 
 #view create_cake
 
-def create_cake(request):
+def create_cake(request, id):
+    id_cakes = 0
+    try:
+        cakes = Cakes.objects.get(id=id)
+        id_cakes = cakes.id
+    except Exception as e:
+        cakes = None
+        
     if request.method == 'POST':
         form = CakesForm(request.POST, request.FILES)
         
@@ -50,9 +57,20 @@ def create_cake(request):
             cakes.save()
             return redirect('Cakes')
         
+    elif cakes:
+        form = CakesForm({'order':cakes.order, 'fullname': cakes.fullname, 'address':cakes.address, 'phone' : cakes.phone, 'email': cakes.email, 'product': cakes.product, 'units':cakes.units, 'imagen': cakes.imagen})
+    else:
+        #id_cakes = 0
+        form = CakesForm()
+    return render(request, 'AppPfinalcoder/form_cakes.html', {'form': form, 'id_cakes':id_cakes})
+
+#view remove customer cakes
+
+def remove_cake(request, id):
+    cakes = Cakes.objects.get(id=id)
+    cakes.delete()
+    return render(request, 'AppPfinalcoder/remove_cakes.html', {'cakes': cakes})
     
-    form = CakesForm()
-    return render(request, 'AppPfinalcoder/form_cakes.html', {'form': form})
     
 #__________________________________________________________________________________________
 
@@ -74,7 +92,14 @@ def desserts(request):
 
 
 #view create_desserts
-def create_desserts(request):
+def create_desserts(request, id):
+    id_desserts = 0
+    try:
+        desserts = Dessert.objects.get(id=id)
+        id_desserts = desserts.id
+    except Exception as e:
+        desserts = None
+        
     if request.method == 'POST':
         form = DessertForm(request.POST, request.FILES)
         
@@ -84,9 +109,17 @@ def create_desserts(request):
             desserts.save()
             return redirect('Desserts')
         
-    
-    form = DessertForm()
-    return render(request, 'AppPfinalcoder/form_desserts.html', {'form': form})
+    elif desserts:
+        form = DessertForm({'order':desserts.order, 'fullname': desserts.fullname, 'address':desserts.address, 'phone' : desserts.phone, 'email': desserts.email, 'product': desserts.product, 'units':desserts.units, 'imagen': desserts.imagen})
+    else:
+        form = DessertForm()
+    return render(request, 'AppPfinalcoder/form_desserts.html', {'form': form, 'id_desserts': id_desserts})
+
+#View remove desserts
+def remove_desserts(request, id):
+    desserts = Dessert.objects.get(id=id)
+    desserts.delete()
+    return render(request, 'AppPfinalcoder/remove_desserts.html', {'desserts': desserts})
 
 #_______________________________________________________________________________________________________________
 
@@ -108,7 +141,14 @@ def bakery(request):
 
 
 #view create_bakery
-def create_bakery(request):
+def create_bakery(request, id):
+    id_bakery = 0
+    try:
+        bakery =Bakery.objects.get(id=id)
+        id_bakery = bakery.id
+    except Exception as e:
+        bakery = None
+        
     if request.method == 'POST':
         form = BakeryForms(request.POST, request.FILES)
         
@@ -118,9 +158,17 @@ def create_bakery(request):
             bakery.save()
             return redirect('Bakery')
         
-    
-    form = BakeryForms()
-    return render(request, 'AppPfinalcoder/form_bakery.html', {'form': form})
+    elif bakery:
+        form = BakeryForms({'order':bakery.order, 'fullname': bakery.fullname, 'address':bakery.address, 'phone' : bakery.phone, 'email': bakery.email, 'product': bakery.product, 'units': bakery.units, 'imagen': bakery.imagen})
+    else:
+        form = BakeryForms()
+    return render(request, 'AppPfinalcoder/form_bakery.html', {'form': form, 'id_bakery': id_bakery})
+
+#View remove bakery
+def remove_bakery(request, id):
+    bakery = Bakery.objects.get(id=id)
+    bakery.delete()
+    return render(request, 'AppPfinalcoder/remove_bakery.html', {'bakery': bakery})
 #__________________________________________________________________________________________
 #View login
 def login_request(request):

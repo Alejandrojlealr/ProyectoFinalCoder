@@ -17,6 +17,8 @@
         {% for bakery in bakery %}
             <li>
                 <a href={% url 'detailbakery' bakery.id %}>{{bakery}}</a>
+               <p> <a href={% url 'Create_bakery' bakery.id %}>Edit</a>
+                    <a href={% url 'Remove_bakery' bakery.id %}>Remove</a>  </p>
             </li>
         {% endfor %}
     {% elif error%}

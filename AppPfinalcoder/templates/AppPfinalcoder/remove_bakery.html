@@ -1,0 +1,13 @@
+{% extends 'AppPfinalcoder/home.html' %}
+
+{% block head %}
+    <title>REMOVE CUSTOMER BAKERY</title>
+{% endblock head %}
+
+
+{% block body %}
+    <h1>Remove customer bakery</h1>
+     <a href= {% url 'Create_bakery' %}>Create customer bakery</a>
+    <p>Customer Remove{{bakery}}</p>
+    
+{% endblock body %}
