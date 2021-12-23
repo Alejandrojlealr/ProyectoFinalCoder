@@ -6,7 +6,7 @@
 
 
 {% block body %}
-    <h1>Create Cakes</h1>
+    <h1>Create Customer Cakes</h1>
 
     <form action={% url 'Create_cakes' id_cakes %} method="POST" enctype="multipart/form-data">
         {% csrf_token %}
