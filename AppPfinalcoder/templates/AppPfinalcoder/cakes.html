@@ -14,7 +14,7 @@
     </form>
 
     <ul>
-    {% if  cakes %}
+    {% if cakes %}
         {% for cake in cakes %}
             <li>
                 <a href={% url 'detailcake' cake.id %}>{{cake}}</a> 

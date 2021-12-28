@@ -4,8 +4,8 @@ from django.db import models
 
 # Create your models here.
 class Cakes(models.Model):
-    date=models.DateTimeField(default=datetime.now())
-    order=models.IntegerField(default=0)
+    date= models.DateTimeField(default=datetime.now())
+    order= models.IntegerField(default=0)
     fullname=models.CharField(max_length=30)
     address=models.CharField(max_length=50)
     phone=models.IntegerField()
@@ -41,6 +41,8 @@ class Bakery(models.Model):
     product=models.CharField(max_length=30)
     units=models.IntegerField()
     imagen=models.ImageField(upload_to='bakery',null=True, blank=True)
+    
+    customer_cake_order=models.ForeignKey(Cakes, null=True, blank=True, on_delete=models.CASCADE)
     
     
     def __str__(self):
