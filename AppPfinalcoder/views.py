@@ -4,11 +4,12 @@ from django.shortcuts import redirect, render
 
 from AppPfinalcoder.forms import CakesForm
 from .models import Bakery, Cakes, Dessert
-from .forms import CakesForm, DessertForm, BakeryForms
+from .forms import CakesForm, DessertForm, BakeryForms, RegisterUserForm, EditUserForm
 
 #login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
+
 
 from django.contrib.auth.decorators import login_required
 
@@ -200,7 +201,7 @@ def login_request(request):
 def register_request(request):
     
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterUserForm(request.POST)
         
         if form.is_valid():
             username=form.cleaned_data.get('username')
@@ -209,9 +210,38 @@ def register_request(request):
             
             return render(request, 'AppPfinalcoder/home.html', { 'message_register': True, 'message': f' User {username} created'})
     
-    form = UserCreationForm()
+    form = RegisterUserForm()
     
     return render(request, 'AppPfinalcoder/register.html', {'form':form, 'message': '', 'error': False})
+
+#______________________________________________________________________________________________________________________________________
+#Edit User
+@login_required
+def edit_user(request):
+    user = request.user
+    
+    if request.method == 'POST':
+        form = EditUserForm(request.POST)
+        
+        if form.is_valid():
+            
+            data = form.cleaned_data
+            
+            
+            user.email = data['email']
+            user.password1 = data['password1']
+            user.password2 = data['password2']
+            user.first_name = data['first_name']
+            user.last_name = data['last_name']
+            
+            user.save()
+            
+            
+            return render(request, 'AppPfinalcoder/home.html', { 'message_editer': True, 'message': f' User edited'})
+    else:
+        form = EditUserForm(initial= {'first_name': user.first_name, 'last_name': user.last_name , 'email': user.email})
+    
+    return render(request, 'AppPfinalcoder/edit_user.html', {'form':form, 'message': '', 'error': False})
 
 #________________________________________________________________________________________________________________
 #PRICES

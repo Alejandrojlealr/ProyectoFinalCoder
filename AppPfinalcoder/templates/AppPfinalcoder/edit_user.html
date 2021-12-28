@@ -1,0 +1,21 @@
+{% extends 'AppPfinalcoder/home.html' %}
+
+{% block head %}
+    <title>EDIT USER</title>
+{% endblock head %}
+
+{% block body %}
+  <h3>Edit User</h3>    
+     {{message}}
+    
+    <form action ='' method="POST">
+        {% csrf_token %}
+        <table>
+            {{form}}
+        </table>
+        <input type='submit' value="Send">
+
+    </form>
+
+
+{% endblock body %}

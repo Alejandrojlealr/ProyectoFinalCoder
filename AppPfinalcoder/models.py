@@ -42,6 +42,7 @@ class Bakery(models.Model):
     units=models.IntegerField()
     imagen=models.ImageField(upload_to='bakery',null=True, blank=True)
     
+    
     def __str__(self):
        return f'Customer order {self.order} - {self.fullname}- {self.product}'
     
